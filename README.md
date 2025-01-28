@@ -55,3 +55,53 @@
     
     + month_app_rate: 12 cột tương ứng với 12 ghi nhận tỷ lệ số lượng hồ sơ khách hàng được duyệt/hồ sơ khách hàng đăng ký vay.
 
+## Công cụ sử dụng
+
+  Hệ quản trị cơ sở dữ liệu: PosgreSQL
+  
+  Công cụ quản lý cơ sở dữ liệu: DBeaver
+
+## Quá trình làm bài
+### Tạo bảng chứa thông tin các chỉ tiêu cần báo cáo
+
+  Bảng thông tin cần có tên chỉ tiêu, ID cho các chỉ tiêu tương ứng (Primary key). Từ đó, ta có thể làm việc với các ID - ở dạng số thay vì từng tên chỉ tiêu - ở dạng chữ. Câu lệnh thực hiện như sau:
+```sql
+  create table dim_indexes(
+	  index_id serial primary key,
+	  index_name varchar(255) not null,
+	  rec_created_dt timestamp default CURRENT_TIMESTAMP,
+    rec_updated_dt timestamp default CURRENT_TIMESTAMP
+);
+
+ insert into dim_indexes (index_name) values ('1. Lợi nhuận trước thuế'); 
+ insert into dim_indexes (index_name) values ('Thu nhập từ hoạt động thẻ'); 
+ insert into dim_indexes (index_name) values ('Lãi trong hạn'); 
+ insert into dim_indexes (index_name) values ('Lãi quá hạn'); 
+ insert into dim_indexes (index_name) values ('Phí Bảo hiểm'); 
+ insert into dim_indexes (index_name) values ('Phí tăng hạn mức'); 
+ insert into dim_indexes (index_name) values ('Phí thanh toán chậm, thu từ ngoại bảng, khác…'); 
+ insert into dim_indexes (index_name) values ('Chi phí thuần KDV'); 
+ insert into dim_indexes (index_name) values ('DT Nguồn vốn'); 
+ insert into dim_indexes (index_name) values ('CP vốn TT 2'); 
+ insert into dim_indexes (index_name) values ('CP vốn TT 1'); 
+ insert into dim_indexes (index_name) values ('CP vốn CCTG'); 
+ insert into dim_indexes (index_name) values ('Chi phí thuần hoạt động khác'); 
+ insert into dim_indexes (index_name) values ('DT Fintech'); 
+ insert into dim_indexes (index_name) values ('DT tiểu thương, cá nhân'); 
+ insert into dim_indexes (index_name) values ('DT Kinh doanh'); 
+ insert into dim_indexes (index_name) values ('CP hoa hồng '); 
+ insert into dim_indexes (index_name) values ('CP thuần KD khác '); 
+ insert into dim_indexes (index_name) values ('CP hợp tác kd tàu (net)'); 
+ insert into dim_indexes (index_name) values ('Tổng thu nhập hoạt động'); 
+ insert into dim_indexes (index_name) values ('Tổng chi phí hoạt động'); 
+ insert into dim_indexes (index_name) values ('CP thuế, phí'); 
+ insert into dim_indexes (index_name) values ('CP nhân viên'); 
+ insert into dim_indexes (index_name) values ('CP quản lý'); 
+ insert into dim_indexes (index_name) values ('CP tài sản'); 
+ insert into dim_indexes (index_name) values ('Chi phí dự phòng'); 
+ insert into dim_indexes (index_name) values ('2. Số lượng nhân sự ( Sale Manager )'); 
+ insert into dim_indexes (index_name) values ('3. Chỉ số tài chính'); 
+ insert into dim_indexes (index_name) values ('CIR (%)'); 
+ insert into dim_indexes (index_name) values ('Margin (%)'); 
+ insert into dim_indexes (index_name) values ('Hiệu suất trên/vốn (%)'); 
+ insert into dim_indexes (index_name) values ('Hiệu suất BQ/ Nhân sự'); 
